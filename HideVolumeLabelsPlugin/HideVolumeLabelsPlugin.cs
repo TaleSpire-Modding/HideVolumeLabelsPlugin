@@ -23,7 +23,7 @@ namespace HideVolumeLabelsPlugin
     {
         // constants
         public const string Guid = "org.hollofox.plugins.HideVolumeLabelsPlugin";
-        public const string G = "HVL";
+        public const string G = "L";
         private const string Version = "1.0.0.0";
 
         private static Dictionary<HideVolumeItem, Dictionary<string,string>> Labels
@@ -82,6 +82,7 @@ namespace HideVolumeLabelsPlugin
         private static bool LoadLabelsError = true;
         private static bool LoadLabels()
         {
+            Debug.Log(BoardSessionManager.CurrentBoardInfo.Description);
             try
             {
                 var allVolumes = HideVolumeLabelsPlugin.allVolumes();
