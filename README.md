@@ -7,7 +7,8 @@ This is a plugin for TaleSpire using BepInEx.
 Currently you need to either follow the build guide down below or use the R2ModMan.
 
 ## Usage
-
+This plugin allows a user to Label Hide Volumes.
+Storage of labels is done via Board Persistence which needs an update.
 
 ## How to Compile / Modify
 
@@ -31,12 +32,13 @@ Build the project.
 Browse to the newly created ```bin/Debug``` or ```bin/Release``` folders and copy the ```HideVolumeLabelsPlugin.dll``` to ```Steam\steamapps\common\TaleSpire\BepInEx\plugins```
 
 ## Changelog
-1.0.0: Initial release
+- 1.0.0: Initial release
 
 ## Shoutouts
 Shoutout to my Patreons on https://www.patreon.com/HolloFox recognising your
 mighty contribution to my caffeine addiciton:
 - John Fuller
+- Don Cole
 
 ## Monthly Release
 This is the first of the Monthly Release part of collaboration with Demongund.
