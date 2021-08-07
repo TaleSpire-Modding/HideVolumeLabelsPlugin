@@ -24,7 +24,7 @@ namespace HideVolumeLabelsPlugin
         // constants
         public const string Guid = "org.hollofox.plugins.HideVolumeLabelsPlugin";
         public const string G = "L";
-        private const string Version = "1.0.1.0";
+        public const string Version = "1.0.1.0";
 
         private static Dictionary<HideVolumeItem, Dictionary<string,string>> Labels
             = new Dictionary<HideVolumeItem, Dictionary<string, string>>();
