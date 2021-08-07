@@ -24,7 +24,7 @@ namespace HideVolumeLabelsPlugin
         // constants
         public const string Guid = "org.hollofox.plugins.HideVolumeLabelsPlugin";
         public const string G = "L";
-        private const string Version = "1.0.0.0";
+        private const string Version = "1.0.1.0";
 
         private static Dictionary<HideVolumeItem, Dictionary<string,string>> Labels
             = new Dictionary<HideVolumeItem, Dictionary<string, string>>();
@@ -33,6 +33,13 @@ namespace HideVolumeLabelsPlugin
         private ConfigEntry<Color> baseColor { get; set; }
         private Dictionary<string, string> colorizations = new Dictionary<string, string>();
         private string dir = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf("/")) + "/TaleSpire_CustomData/";
+
+        public static string GetLabel(HideVolumeItem volume, string key)
+        {
+            if (!Labels.ContainsKey(volume)) return "";
+            if (!Labels[volume].ContainsKey(key)) return "";
+            return Labels[volume][key];
+        }
 
         public static void SetLabel(HideVolumeItem volume, string key, string text)
         {
@@ -46,6 +53,21 @@ namespace HideVolumeLabelsPlugin
             else Labels[volume][key] = text;
 
             SaveLabels();
+        }
+
+        public static List<HideVolumeItem> allVolumes()
+        {
+            var a = HideVolumeManager.Instance;
+            var hideVolumes = a.transform.GetChild(1).Children();
+            var allVolumes = new List<HideVolumeItem>();
+            for (int i = 0; i < hideVolumes.LongCount(); i++)
+            {
+                var volume = a.transform.GetChild(1).GetChild(i);
+                var volumeComponent = volume.GetComponent<HideVolumeItem>();
+                allVolumes.Add(volumeComponent);
+            }
+
+            return allVolumes;
         }
 
         private static void SaveLabels()
@@ -62,21 +84,6 @@ namespace HideVolumeLabelsPlugin
             var info = JsonConvert.SerializeObject(toInt);
 
             HolloFoxes.BoardPersistence.SetInfo(G,info);
-        }
-
-        private static List<HideVolumeItem> allVolumes()
-        {
-            var a = HideVolumeManager.Instance;
-            var hideVolumes = a.transform.GetChild(1).Children();
-            var allVolumes = new List<HideVolumeItem>();
-            for (int i = 0; i < hideVolumes.LongCount(); i++)
-            {
-                var volume = a.transform.GetChild(1).GetChild(i);
-                var volumeComponent = volume.GetComponent<HideVolumeItem>();
-                allVolumes.Add(volumeComponent);
-            }
-
-            return allVolumes;
         }
 
         private static bool LoadLabelsError = true;
